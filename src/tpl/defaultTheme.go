@@ -17,6 +17,9 @@ var defaultCss []byte
 //go:embed frontend/index.js
 var defaultJs []byte
 
+//go:embed frontend/preview.js
+var defaultPrew []byte
+
 var DefaultTheme MemTheme
 
 func init() {
@@ -30,6 +33,7 @@ func init() {
 		"favicon.ico": {"image/x-icon", bytes.NewReader(defaultFavicon)},
 		"index.css":   {"text/css", bytes.NewReader(defaultCss)},
 		"index.js":    {"application/javascript", bytes.NewReader(defaultJs)},
+		"preview.js":  {"application/javascript", bytes.NewReader(defaultPrew)},
 	}
 	DefaultTheme.assets = defaultAssets
 }

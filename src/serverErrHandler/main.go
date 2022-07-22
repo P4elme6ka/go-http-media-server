@@ -1,8 +1,8 @@
 package serverErrHandler
 
 import (
-	"../serverLog"
 	"fmt"
+	"github.com/P4elme6ka/go-http-media-server/src/serverLog"
 	"os"
 )
 

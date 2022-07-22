@@ -1,11 +1,11 @@
 package param
 
 import (
-	"../goNixArgParser"
-	"../serverErrHandler"
-	"../util"
-	"../version"
 	"fmt"
+	"github.com/P4elme6ka/go-http-media-server/src/goNixArgParser"
+	"github.com/P4elme6ka/go-http-media-server/src/serverErrHandler"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
+	"github.com/P4elme6ka/go-http-media-server/src/version"
 	"os"
 	"strings"
 )

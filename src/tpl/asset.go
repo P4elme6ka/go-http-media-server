@@ -1,8 +1,8 @@
 package tpl
 
 import (
-	"../util"
 	"bytes"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"io"
 )
 

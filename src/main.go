@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./app"
-	"./param"
+	"github.com/P4elme6ka/go-http-media-server/src/app"
+	"github.com/P4elme6ka/go-http-media-server/src/param"
 	"os"
 	"os/signal"
 	"syscall"

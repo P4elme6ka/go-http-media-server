@@ -1,9 +1,9 @@
 package param
 
 import (
-	"../goVirtualHost"
-	"../util"
 	"crypto/tls"
+	"github.com/P4elme6ka/go-http-media-server/src/goVirtualHost"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"regexp"
 	"strings"
 )

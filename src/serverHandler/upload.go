@@ -1,8 +1,8 @@
 package serverHandler
 
 import (
-	"../util"
 	"errors"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"io"
 	"mime"
 	"mime/multipart"

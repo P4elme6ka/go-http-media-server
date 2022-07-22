@@ -1,10 +1,10 @@
 package serverHandler
 
 import (
-	"../acceptHeaders"
-	"../util"
 	"compress/flate"
 	"compress/gzip"
+	"github.com/P4elme6ka/go-http-media-server/src/acceptHeaders"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"io"
 	"net/http"
 	"os"

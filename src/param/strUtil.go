@@ -1,7 +1,7 @@
 package param
 
 import (
-	"../util"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"path/filepath"
 	"strings"
 	"unicode/utf8"

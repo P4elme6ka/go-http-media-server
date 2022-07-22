@@ -1,7 +1,7 @@
 package tpl
 
 import (
-	"./util"
+	"github.com/P4elme6ka/go-http-media-server/src/tpl/util"
 	"html/template"
 )
 

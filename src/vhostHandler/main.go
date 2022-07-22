@@ -1,12 +1,12 @@
 package vhostHandler
 
 import (
-	"../param"
-	"../serverErrHandler"
-	"../serverHandler"
-	"../serverLog"
-	"../tpl"
-	"../user"
+	"github.com/P4elme6ka/go-http-media-server/src/param"
+	"github.com/P4elme6ka/go-http-media-server/src/serverErrHandler"
+	"github.com/P4elme6ka/go-http-media-server/src/serverHandler"
+	"github.com/P4elme6ka/go-http-media-server/src/serverLog"
+	"github.com/P4elme6ka/go-http-media-server/src/tpl"
+	"github.com/P4elme6ka/go-http-media-server/src/user"
 	"net/http"
 )
 

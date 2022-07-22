@@ -3,9 +3,9 @@
 package serverLog
 
 import (
-	"../util"
 	"errors"
 	"fmt"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"os"
 	"sync"
 	"time"

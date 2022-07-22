@@ -1,7 +1,7 @@
 package serverHandler
 
 import (
-	"../util"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"os"
 )
 

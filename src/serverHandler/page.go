@@ -1,10 +1,10 @@
 package serverHandler
 
 import (
-	"../acceptHeaders"
-	"../i18n"
-	tplutil "../tpl/util"
-	"../util"
+	"github.com/P4elme6ka/go-http-media-server/src/acceptHeaders"
+	"github.com/P4elme6ka/go-http-media-server/src/i18n"
+	tplutil "github.com/P4elme6ka/go-http-media-server/src/tpl/util"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"html/template"
 	"io"
 	"net/http"

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"../util"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 )
 
 type List struct {

@@ -1,8 +1,8 @@
 package serverHandler
 
 import (
-	"../util"
 	"bytes"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"os"
 	"sort"
 	"strings"

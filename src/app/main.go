@@ -1,15 +1,15 @@
 package app
 
 import (
-	"../goVirtualHost"
-	"../param"
-	"../serverErrHandler"
-	"../serverHandler"
-	"../serverLog"
-	"../tpl"
-	"../util"
-	"../vhostHandler"
 	"fmt"
+	"github.com/P4elme6ka/go-http-media-server/src/goVirtualHost"
+	"github.com/P4elme6ka/go-http-media-server/src/param"
+	"github.com/P4elme6ka/go-http-media-server/src/serverErrHandler"
+	"github.com/P4elme6ka/go-http-media-server/src/serverHandler"
+	"github.com/P4elme6ka/go-http-media-server/src/serverLog"
+	"github.com/P4elme6ka/go-http-media-server/src/tpl"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
+	"github.com/P4elme6ka/go-http-media-server/src/vhostHandler"
 	"os"
 	"path/filepath"
 	"strconv"

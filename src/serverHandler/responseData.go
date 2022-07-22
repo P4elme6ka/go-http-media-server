@@ -1,8 +1,8 @@
 package serverHandler
 
 import (
-	"../i18n"
-	"../util"
+	"github.com/P4elme6ka/go-http-media-server/src/i18n"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 	"html/template"
 	"net/http"
 	"os"

@@ -1,9 +1,9 @@
 package app
 
 import (
-	"../goVirtualHost"
-	"../util"
 	"fmt"
+	"github.com/P4elme6ka/go-http-media-server/src/goVirtualHost"
+	"github.com/P4elme6ka/go-http-media-server/src/util"
 )
 
 func printAccessibleURLs(vhSvc *goVirtualHost.Service) {

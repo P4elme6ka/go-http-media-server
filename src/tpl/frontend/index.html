@@ -129,24 +129,68 @@
 	</ul>
 </div>
 <script>
-	function generatePreview(url) {
-		switch (url.split(".").lase) {
+	function showVideo(url) {
+		document.getElementById("viewer").scrollIntoView();
+		document.getElementById('video').style.display='block';
+		document.getElementById('audio').style.display='none';
+		document.getElementById('image').style.display='none';
+		document.getElementById('video').src=url;
+	}
+	function showAudio(url) {
+		document.getElementById("viewer").scrollIntoView();
+		document.getElementById('video').style.display='none';
+		document.getElementById('audio').style.display='block';
+		document.getElementById('image').style.display='none';
+		document.getElementById("audio").src=url;
+	}
+	function showImage(url) {
+		document.getElementById("viewer").scrollIntoView();
+		document.getElementById('video').style.display='none';
+		document.getElementById('audio').style.display='none';
+		document.getElementById('image').style.display='block';
+		document.getElementById('image').src=url;
+	}
 
+	function setView(url) {
+		switch (url.split(".").pop()) {
+			case "MP4":
+			case "mp4":
+				showVideo(url);
+				break;
+			case "jpg":
+			case "png":
+				showImage(url);
+				break;
+		}
+	}
+
+	function generatePreview(url){
+		switch (url.split(".").pop()) {
+			case "MP4":
+			case "mp4":
+				return '<video style=\"height: 200px; width: 200px; overflow: hidden;\" src=\"' + url + '#t=0.5\" preload=\"metadata\" loop></video>'
+			case "jpg":
+			case "png":
+				return '<img style=\"height: 200px; width: 200px; overflow: hidden;\" src=\"' + url + '\" alt="previw">'
 		}
 	}
 </script>
+<div style="border-left: 1px solid #999; height: auto;"></div>
 <div class="viewer column70">
-	<div class="media-viewer">
-		<video id="video" controls autoplay></video>
-		<img id="image">
-		<audio id="audio"></audio>
+	<div class="media-viewer" id="viewer">
+		<video class="video-view" id="video" controls autoplay></video>
+		<img class="image-view" id="image">
+		<audio class="audio-view" id="audio"></audio>
 	</div>
 	<div class="files-viewer">
 		<div class="container" >
 			{{range .SubItemsHtml}}
-			<div class="{{.Type}}-view" onclick="document.getElementById('video').src={{.Url}}">
-				<video style="height: 200px; width: 200px; overflow: hidden;" src="{{.Url}}#t=0.5" preload="metadata" loop></video>
-				<p>{{.DisplayName}}</p>
+			<div class="{{.Type}}-dirhide">
+				<div class="{{.Type}}-view" onclick="setView('{{.Url}}')">
+					{{ if eq .Extension "image" }} <img style="text-align: center; margin: auto; max-height: 200px; max-width: 200px; overflow: hidden;position: relative; top: 50%; transform: translateY(-50%);" src="{{.Url}}" alt="preview"> {{ end }}
+					{{ if eq .Extension "video" }} <video style="text-align: center; margin: auto; max-height: 200px; max-width: 200px; overflow: hidden;	position: relative;	top: 50%; transform: translateY(-50%);" src="{{.Url}}#t=0.5" preload="metadata" loop></video> {{ end }}
+				</div>
+				<p class="{{.Type}}-dirhide" style="overflow: hidden; display: block; line-height: 1.5em; height: 3em; margin: 10px; width: 200px; word-wrap: break-word;">{{.DisplayName}}</p>
 			</div>
 			{{end}}
 		</div>

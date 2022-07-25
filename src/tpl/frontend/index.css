@@ -680,34 +680,63 @@ html.dragging::before {
 .file-view {
 	width: 200px;
 	height: 200px;
-	border: #33331a dashed thick;
-	margin: 10px;
+	border: #33331a solid thin;
+	margin: 10px 10px 60px 10px;
 	cursor: pointer;
 	font-size: 1rem;
 	overflow-wrap: break-word;
 }
 
-video {
-	width: 800px;
-	height: 600px;
+.video-view {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	width: auto;
+	max-height: 450px;
+	margin: auto;
+}
+
+.image-view {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	height: auto;
+	width: auto;
+	max-height: 450px;
+	margin: auto;
 }
 
 .dir-list {
 
 }
 
-.dir-view {
+.dir-dirhide{
 	display: none;
+}
+.file-filehide{
+	display: none;
+}
+
+.dir-view {
+
 }
 
 .container {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	align-content: center;
+	justify-content: center;
+	flex-direction: row;
+	align-items: flex-end;
 }
 
 .media-viewer {
-	width: 70%;
+	width: auto;
+	height: 500px;
+	border: 1px solid #999;
+	border-left: none;
 }
 
 .files-viewer {

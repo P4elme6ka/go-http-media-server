@@ -8,6 +8,7 @@ import (
 	"html/template"
 	"io"
 	"net/http"
+	"strings"
 )
 
 const TypeDir = template.HTML("dir")
@@ -25,6 +26,7 @@ func updateSubItemsHtml(data *responseData) {
 		var typ template.HTML
 		var url string
 		var readableSize template.HTML
+		var ext string
 
 		if info.IsDir() {
 			displayName = tplutil.FormatFilename(name) + "/"
@@ -35,11 +37,20 @@ func updateSubItemsHtml(data *responseData) {
 			typ = TypeFile
 			url = data.SubItemPrefix + urlEscapedName + data.Context.FileQueryString()
 			readableSize = tplutil.FormatSize(info.Size())
+			sp := strings.Split(info.Name(), ".")
+			ext = sp[len(sp)-1]
 		}
 
 		var deleteUrl string
 		if data.CanDelete && !isVirtual(info) {
 			deleteUrl = name
+		}
+
+		if (ext == "jpg") || (ext == "png") || (ext == "JPG") {
+			ext = "image"
+		}
+		if (ext == "mp4") || (ext == "MP4") {
+			ext = "video"
 		}
 
 		data.SubItemsHtml[i] = &itemHtml{
@@ -49,6 +60,7 @@ func updateSubItemsHtml(data *responseData) {
 			DisplaySize: readableSize,
 			DisplayTime: tplutil.FormatTime(info.ModTime()),
 			DeleteUrl:   deleteUrl,
+			Extension:   ext,
 		}
 	}
 }

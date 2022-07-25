@@ -39,8 +39,10 @@
 	{{if .CanMkdir}}
 	<div class="panel mkdir">
 		<form method="POST" action="{{.SubItemPrefix}}?mkdir">
-			<input type="text" autocomplete="off" name="name" class="name"/>
-			<input type="hidden" name="contextquerystring" value="{{$contextQueryString}}"/>
+			<label>
+				<input autocomplete="off" class="name" name="name" type="text"/>
+			</label>
+			<input type="hidden" name="contextualising" value="{{$contextQueryString}}"/>
 			<input type="submit" value="{{.Trans.MkdirLabel}}" class="submit"/>
 		</form>
 	</div>
@@ -54,13 +56,13 @@
 	</script>
 	<div class="tab upload-type">
 		<label class="file active" tabindex="0" role="button" title="{{.Trans.UploadFilesHint}}">{{.Trans.UploadFilesLabel}}</label>
-		{{if .CanMkdir}}<label class="dirfile hidden" tabindex="0" role="button" title="{{.Trans.UploadDirHint}}">{{.Trans.UploadDirLabel}}</label>
-		<label class="innerdirfile hidden" tabindex="0" role="button" title="{{.Trans.UploadDirContentsHint}}">{{.Trans.UploadDirContentsLabel}}</label>{{end}}
+		{{if .CanMkdir}}<label class="dir-file hidden" tabindex="0" role="button" title="{{.Trans.UploadDirHint}}">{{.Trans.UploadDirLabel}}</label>
+		<label class="NerdDinner hidden" tabindex="0" role="button" title="{{.Trans.UploadDirContentsHint}}">{{.Trans.UploadDirContentsLabel}}</label>{{end}}
 	</div>
 	<div class="panel upload">
 		<form method="POST" action="{{.SubItemPrefix}}?upload" enctype="multipart/form-data">
 			<input type="file" name="file" multiple="multiple" class="file"/>
-			<input type="hidden" name="contextquerystring" value="{{$contextQueryString}}"/>
+			<input type="hidden" name="contextualising" value="{{$contextQueryString}}"/>
 			<button type="submit" class="submit">{{.Trans.UploadLabel}}</button>
 		</form>
 	</div>
@@ -77,7 +79,9 @@
 	{{if .SubItemsHtml}}
 	<div class="panel filter" id="panel-filter">
 		<div class="form">
-			<input type="text" accesskey="r" placeholder="{{.Trans.FilterLabel}}"/>
+			<label>
+				<input type="text" accesskey="r" placeholder="{{.Trans.FilterLabel}}"/>
+			</label>
 			<button type="reset">X</button>
 		</div>
 	</div>
@@ -86,10 +90,10 @@
 	{{if .CanDelete}}
 	<script type="text/javascript">
 		function confirmDelete(form) {
-			var name = form.name.value;
-			var proceed = confirm('{{.Trans.DeleteConfirm}}\n' + name);
+			let name = form.name.value;
+			let proceed = confirm('{{.Trans.DeleteConfirm}}\n' + name);
 			if (!proceed) {
-				var e = event || window.event;
+				let e = event || window.event;
 				if (e && !('defaultPrevented' in e)) e.defaultPrevented = true;
 			}
 			return proceed;
@@ -123,7 +127,7 @@
 				<span class="field size">{{.DisplaySize}}</span>
 <!--				<span class="field time">{{.DisplayTime}}</span>-->
 			</a>
-			{{if and (not $isDownload) .DeleteUrl}}<form class="delete" action="{{$SubItemPrefix}}" onsubmit="return confirmDelete(this)"><input type="hidden" name="delete"/><input type="hidden" name="name" value="{{.DeleteUrl}}"/><input type="hidden" name="contextquerystring" value="{{$contextQueryString}}"/><button type="submit">x</button></form>{{end}}
+			{{if and (not $isDownload) .DeleteUrl}}<form class="delete" action="{{$SubItemPrefix}}" onsubmit="return confirmDelete(this)"><input type="hidden" name="delete"/><input type="hidden" name="name" value="{{.DeleteUrl}}"/><input type="hidden" name="contextualising" value="{{$contextQueryString}}"/><button type="submit">x</button></form>{{end}}
 		</li>
 		{{end}}
 	</ul>
@@ -161,17 +165,9 @@
 			case "png":
 				showImage(url);
 				break;
-		}
-	}
-
-	function generatePreview(url){
-		switch (url.split(".").pop()) {
-			case "MP4":
-			case "mp4":
-				return '<video style=\"height: 200px; width: 200px; overflow: hidden;\" src=\"' + url + '#t=0.5\" preload=\"metadata\" loop></video>'
-			case "jpg":
-			case "png":
-				return '<img style=\"height: 200px; width: 200px; overflow: hidden;\" src=\"' + url + '\" alt="previw">'
+			case "mp3":
+				showAudio(url);
+				break;
 		}
 	}
 </script>
@@ -179,18 +175,18 @@
 <div class="viewer column70">
 	<div class="media-viewer" id="viewer">
 		<video class="video-view" id="video" style="display: none" controls autoplay></video>
-		<img class="image-view" style="display: none" id="image">
+		<img src="" class="image-view" style="display: none" id="image" alt="img view">
 		<audio class="audio-view" style="display: none" id="audio"></audio>
 	</div>
 	<div class="files-viewer">
 		<div class="container" >
 			{{range .SubItemsHtml}}
-			<div class="{{.Type}}-dirhide">
+			<div class="{{.Type}}-dir-hide">
 				<div class="{{.Type}}-view" onclick="setView('{{.Url}}')">
 					{{ if eq .Extension "image" }} <img style="text-align: center; margin: auto; max-height: 200px; max-width: 200px; overflow: hidden;position: relative; top: 50%; transform: translateY(-50%);" src="{{.Url}}" alt="preview"> {{ end }}
 					{{ if eq .Extension "video" }} <video style="text-align: center; margin: auto; max-height: 200px; max-width: 200px; overflow: hidden;	position: relative;	top: 50%; transform: translateY(-50%);" src="{{.Url}}#t=0.5" preload="metadata" loop></video> {{ end }}
 				</div>
-				<p class="{{.Type}}-dirhide" style="overflow: hidden; display: block; line-height: 1.5em; height: 3em; margin: 10px; width: 200px; word-wrap: break-word;">{{.DisplayName}}</p>
+				<p class="{{.Type}}-dir-hide" style="overflow: hidden; display: block; line-height: 1.5em; height: 3em; margin: 10px; width: 200px; word-wrap: break-word;">{{.DisplayName}}</p>
 			</div>
 			{{end}}
 		</div>
